@@ -25,9 +25,8 @@ class WC_Gateway_M1Pay extends WC_Payment_Gateway {
         $this->public_key_path = get_option('woocommerce_m1pay_public_key_path');
 
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, [$this, 'process_admin_options']);
-	add_action('admin_init', [$this, 'handle_file_upload']);
+	    add_action('admin_init', [$this, 'handle_file_upload']);
 
-	// Hook this line inside constructor
         add_action('woocommerce_api_m1pay_response', [$this, 'handle_frontend_response']);
         add_action('woocommerce_api_m1pay_callback', [$this, 'handle_backend_response']);
     }
@@ -206,7 +205,7 @@ class WC_Gateway_M1Pay extends WC_Payment_Gateway {
             //'channel' => '', //if open with respective value, need to show payment channel at checkour. for now leave it empty
             //'fpxBank' => '', //list of bank when select channel = ONLINE_BANKING. for now leave it empty
             'exchangeOrderNo' => $orderId,
-            'skipConfirmation' => 'false'
+            'skipConfirmation' => 'false' //set true if want skip M1Pay Confirmation page
         ];
 
         $raw_data = $payloadm1pay['productDescription'].'|'
@@ -392,7 +391,7 @@ class WC_Gateway_M1Pay extends WC_Payment_Gateway {
 
     protected function debugmone($type, $text){
         $logger = wc_get_logger();
-        $context = [ 'source' => 'm1pay-devwp1' ]; // Optional: helps filter logs
+        $context = [ 'source' => 'm1pay' ]; // Optional: helps filter logs
 
         if($type == 'debug'){
                 // Log an info message
@@ -409,15 +408,5 @@ class WC_Gateway_M1Pay extends WC_Payment_Gateway {
                 $logger->error( $text, $context );
         }
    }
-
-    /*public function process_payment($order_id) {
-        $order = wc_get_order($order_id);
-        // Example: Mark as on-hold and reduce stock
-        $order->update_status('on-hold', 'Awaiting M1Pay payment');
-        wc_reduce_stock_levels($order_id);
-        return ['result' => 'success', 'redirect' => $this->get_return_url($order)];
-    }*/
-
-
 
 }
