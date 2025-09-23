@@ -17,6 +17,11 @@ WooCommerce payment method for M1Pay (Hosted Checkout) with **Blocks** support.
 2. Upload the zip file in Wordpress Plugin page or clone to `wp-content/plugins`. Make sure the destination path is like this `wp-content/plugins/m1pay-block-gateway`
 3. Activate in **Plugins**
 4. Configure in **WooCommerce → Settings → Payments → M1Pay**
+5. Open M1Pay Merchant Portal and set as the following:
+   1. The **Redirect URL** in setting page:  
+      *https://{merchant-domain}/wc-api/m1pay_response/*    
+   2. For **Host-to-Host callback URL** in setting page  
+      *https://{merchant-domain}/wc-api/m1pay_callback/*    
 
 # MUST Requirements
 Register to M1Pay first  
