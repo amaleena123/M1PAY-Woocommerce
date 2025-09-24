@@ -22,6 +22,10 @@ WooCommerce payment method for M1Pay (Hosted Checkout) with **Blocks** support.
       *https://{merchant-domain}/wc-api/m1pay_response/*    
    2. For **Host-to-Host callback URL** in setting page  
       *https://{merchant-domain}/wc-api/m1pay_callback/*    
+6. Make sure your permalink must set like this in Wordpress setting:
+   <img width="935" height="530" alt="image" src="https://github.com/user-attachments/assets/5a3aefda-dec9-405b-82bf-cbcc901a5c9c" />
+
+   Must set the permalink like this : **https://{your_domain}/%postname%/**  
 
 # MUST Requirements
 Register to M1Pay first  
